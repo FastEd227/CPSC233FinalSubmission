@@ -66,7 +66,7 @@ public class NewUser {
 
 
         System.out.println(Arrays.toString(userInfo));
-        return "you havent done this yet :)";
+        return "you haven't done this yet :)";
 
 
         //where userInfor = [name, age, height, weight]

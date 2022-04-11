@@ -142,23 +142,27 @@ public class DaTracker {
     private TextArea detailsDisplay;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void wipeBoard(ActionEvent event) throws IOException {
+    public void addFood(ActionEvent event) {
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

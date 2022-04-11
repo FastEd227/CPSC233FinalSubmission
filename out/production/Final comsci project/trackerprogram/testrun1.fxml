@@ -13,7 +13,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trackerprogram.Testrun1">
    <children>
       <VBox fx:id="mainMenu" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="818.0" prefWidth="1388.0">
@@ -22,7 +21,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="File">
                      <items>
-                        <MenuItem fx:id="newUser" mnemonicParsing="false" text="New User" />
+                        <MenuItem fx:id="newUser" mnemonicParsing="false" onAction="#switchToNewUser" text="New User" />
                         <MenuItem fx:id="exisitingUser" mnemonicParsing="false" text="Existing User" />
                         <MenuItem fx:id="quit" mnemonicParsing="false" text="Quit" />
                      </items>
@@ -75,8 +74,8 @@
                         <TextArea fx:id="addFoodProtein" layoutX="138.0" layoutY="210.0" prefHeight="20.0" prefWidth="127.0" />
                         <TextArea fx:id="addFoodFat" layoutX="138.0" layoutY="250.0" prefHeight="20.0" prefWidth="127.0" />
                         <TextArea fx:id="addFoodCarbs" layoutX="138.0" layoutY="290.0" prefHeight="20.0" prefWidth="127.0" />
-                        <Button fx:id="addFoodButton" layoutX="109.0" layoutY="351.0" mnemonicParsing="false" text="Add Food" />
-                        <Button fx:id="addExerciseButton" layoutX="101.0" layoutY="640.0" mnemonicParsing="false" text="Add Exercise" />
+                        <Button fx:id="addFoodButton" layoutX="109.0" layoutY="351.0" mnemonicParsing="false" onAction="#addFood" text="Add Food" />
+                        <Button fx:id="addExerciseButton" layoutX="101.0" layoutY="640.0" mnemonicParsing="false" onAction="#addExercise" text="Add Exercise" />
                         <Label layoutX="39.0" layoutY="216.0" prefHeight="26.0" prefWidth="66.0" text="Protein" textAlignment="RIGHT" textFill="#9f9f9f">
                            <font>
                               <Font size="18.0" />
@@ -155,8 +154,8 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x2311" />
                            </textFill>
                         </Label>
-                        <Button fx:id="checkFoodTotalButton" layoutX="24.0" layoutY="204.0" mnemonicParsing="false" text="Check Total Consumption" />
-                        <Button fx:id="checkFoodDailyButton" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" text="Check Daily Consumption" />
+                        <Button fx:id="checkFoodTotalButton" layoutX="24.0" layoutY="204.0" mnemonicParsing="false" onAction="#checkFoodTotal" text="Check Total Consumption" />
+                        <Button fx:id="checkFoodDailyButton" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" onAction="#checkFoodAverage" text="Check Daily Consumption" />
                         <Label alignment="CENTER" layoutX="27.0" layoutY="463.0" minWidth="60.0" prefHeight="27.0" prefWidth="127.0" style="&#10;" text="Daily Hours" textAlignment="CENTER" wrapText="false">
                            <textFill>
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x2211" />
@@ -196,8 +195,8 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x23111" />
                            </textFill>
                         </Label>
-                        <Button fx:id="checkExerciseTotalButton" layoutX="24.0" layoutY="517.0" mnemonicParsing="false" text="Check Total Exercise" />
-                        <Button fx:id="checkExerciseDailyButton" layoutX="24.0" layoutY="548.0" mnemonicParsing="false" text="Check Daily Exercise" />
+                        <Button fx:id="checkExerciseTotalButton" layoutX="24.0" layoutY="517.0" mnemonicParsing="false" onAction="#checkExerciseTotal" text="Check Total Exercise" />
+                        <Button fx:id="checkExerciseDailyButton" layoutX="24.0" layoutY="548.0" mnemonicParsing="false" onAction="#checkExerciseAverage" text="Check Daily Exercise" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="624.0" minWidth="60.0" prefHeight="49.0" prefWidth="405.0" style="&#10;" text="All totals and daily amounts are an average value" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x1321" />
@@ -206,16 +205,13 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x2321" />
                            </textFill>
                         </Label>
-                        <Label fx:id="detailsDisplay" alignment="CENTER" layoutX="531.0" layoutY="69.0" minWidth="60.0" prefHeight="416.0" prefWidth="405.0" style="&#10;" textAlignment="CENTER" wrapText="false">
+                        <Button fx:id="loadUserButton" layoutX="700.0" layoutY="573.0" mnemonicParsing="false" onAction="#loadUser" text="Load User" />
+                        <Button fx:id="checkProgress" layoutX="672.0" layoutY="605.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Check Progress" />
+                        <TextArea fx:id="boxForUserName" layoutX="671.0" layoutY="529.0" prefHeight="20.0" prefWidth="127.0" />
+                        <TextArea fx:id="detailsDisplay" editable="false" layoutX="517.0" layoutY="69.0" prefHeight="407.0" prefWidth="460.0">
                            <font>
-                              <Font size="18.0" fx:id="x13211" />
-                           </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x23211" />
-                           </textFill>
-                        </Label>
-                        <Button fx:id="loadUserButton" layoutX="700.0" layoutY="573.0" mnemonicParsing="false" text="Load User" />
-                        <Button fx:id="checkProgress" layoutX="673.0" layoutY="605.0" mnemonicParsing="false" text="Check Progress" />
+                              <Font size="20.0" />
+                           </font></TextArea>
                      </children>
                   </AnchorPane>
                </items>
