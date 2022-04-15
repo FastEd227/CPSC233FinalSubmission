@@ -22,16 +22,13 @@
                   <Menu mnemonicParsing="false" text="File">
                      <items>
                         <MenuItem fx:id="newUser" mnemonicParsing="false" onAction="#switchToNewUser" text="New User" />
-                        <MenuItem fx:id="exisitingUser" mnemonicParsing="false" text="Existing User" />
                         <MenuItem fx:id="quit" mnemonicParsing="false" text="Quit" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Global">
                      <items>
-                        <MenuItem fx:id="addToGlobalFood" mnemonicParsing="false" text="Add Global Food" />
-                        <MenuItem fx:id="addToGlobalExercise" mnemonicParsing="false" text="Add Global Exercise" />
-                        <MenuItem fx:id="showGlobalFood" mnemonicParsing="false" text="View Global Food" />
-                        <MenuItem fx:id="showGlobalExercise" mnemonicParsing="false" text="View Global Exercise" />
+                        <MenuItem fx:id="addToGlobal" mnemonicParsing="false" onAction="#switchToGlobalTracker" text="Add Global Item" />
+                        <MenuItem fx:id="showGlobalInformation" mnemonicParsing="false" onAction="#switchToGlobalInformation" text="View Global Information" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
@@ -115,7 +112,7 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="27.0" layoutY="150.0" minWidth="60.0" prefHeight="27.0" prefWidth="127.0" style="&#10;" text="Daily Meals" textAlignment="CENTER" wrapText="false">
+                        <Label alignment="CENTER" layoutX="37.0" layoutY="76.0" minWidth="60.0" prefHeight="27.0" prefWidth="127.0" style="&#10;" text="Daily Meals" textAlignment="CENTER" wrapText="false">
                            <textFill>
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x221" />
                            </textFill>
@@ -123,10 +120,7 @@
                               <Font size="18.0" fx:id="x121" />
                            </font>
                         </Label>
-                        <TextArea fx:id="checkFoodStartMonth" layoutX="81.0" layoutY="96.0" prefHeight="37.0" prefWidth="58.0" text="MM" />
-                        <TextArea fx:id="checkFoodDailyMeals" layoutX="183.0" layoutY="144.0" prefHeight="20.0" prefWidth="127.0" />
-                        <TextArea fx:id="checkFoodStartDay" layoutX="23.0" layoutY="96.0" prefHeight="38.0" prefWidth="58.0" text="DD" />
-                        <TextArea fx:id="checkFoodStartYear" layoutX="139.0" layoutY="96.0" prefHeight="37.0" prefWidth="58.0" text="YYYY" />
+                        <TextArea fx:id="checkFoodDailyMeals" layoutX="37.0" layoutY="148.0" prefHeight="20.0" prefWidth="127.0" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="24.0" minWidth="60.0" prefHeight="27.0" prefWidth="172.0" style="&#10;" text="Check Food Progress" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x13" />
@@ -135,28 +129,9 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x23" />
                            </textFill>
                         </Label>
-                        <TextArea fx:id="checkFoodEndMonth" layoutX="261.0" layoutY="96.0" prefHeight="37.0" prefWidth="58.0" text="MM" />
-                        <TextArea fx:id="checkFoodEndDay" layoutX="203.0" layoutY="96.0" prefHeight="38.0" prefWidth="58.0" text="DD" />
-                        <TextArea fx:id="checkFoodEndYear" layoutX="319.0" layoutY="96.0" prefHeight="37.0" prefWidth="58.0" text="YYYY" />
-                        <Label alignment="CENTER" layoutX="23.0" layoutY="69.0" minWidth="60.0" prefHeight="27.0" prefWidth="84.0" style="&#10;" text="Start Day" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x131" />
-                           </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x231" />
-                           </textFill>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="203.0" layoutY="69.0" minWidth="60.0" prefHeight="27.0" prefWidth="84.0" style="&#10;" text="End Day" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x1311" />
-                           </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x2311" />
-                           </textFill>
-                        </Label>
                         <Button fx:id="checkFoodTotalButton" layoutX="24.0" layoutY="204.0" mnemonicParsing="false" onAction="#checkFoodTotal" text="Check Total Consumption" />
                         <Button fx:id="checkFoodDailyButton" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" onAction="#checkFoodAverage" text="Check Daily Consumption" />
-                        <Label alignment="CENTER" layoutX="27.0" layoutY="463.0" minWidth="60.0" prefHeight="27.0" prefWidth="127.0" style="&#10;" text="Daily Hours" textAlignment="CENTER" wrapText="false">
+                        <Label alignment="CENTER" layoutX="37.0" layoutY="385.0" minWidth="60.0" prefHeight="27.0" prefWidth="127.0" style="&#10;" text="Daily Hours" textAlignment="CENTER" wrapText="false">
                            <textFill>
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x2211" />
                            </textFill>
@@ -164,10 +139,7 @@
                               <Font size="18.0" fx:id="x1211" />
                            </font>
                         </Label>
-                        <TextArea fx:id="checkExerciseStartMonth" layoutX="81.0" layoutY="409.0" prefHeight="37.0" prefWidth="58.0" text="MM" />
-                        <TextArea fx:id="checkExerciseDailyHours" layoutX="183.0" layoutY="457.0" prefHeight="20.0" prefWidth="127.0" />
-                        <TextArea fx:id="checkExerciseStartDay" layoutX="23.0" layoutY="409.0" prefHeight="38.0" prefWidth="58.0" text="DD" />
-                        <TextArea fx:id="checkExerciseStartYear" layoutX="139.0" layoutY="409.0" prefHeight="37.0" prefWidth="58.0" text="YYYY" />
+                        <TextArea fx:id="checkExerciseDailyHours" layoutX="37.0" layoutY="412.0" prefHeight="20.0" prefWidth="127.0" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="337.0" minWidth="60.0" prefHeight="27.0" prefWidth="194.0" style="&#10;" text="Check Exercise Progress" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x132" />
@@ -176,27 +148,8 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x232" />
                            </textFill>
                         </Label>
-                        <TextArea fx:id="checkExerciseEndMonth" layoutX="261.0" layoutY="409.0" prefHeight="37.0" prefWidth="58.0" text="MM" />
-                        <TextArea fx:id="checkExerciseEndDay" layoutX="203.0" layoutY="409.0" prefHeight="38.0" prefWidth="58.0" text="DD" />
-                        <TextArea fx:id="checkExerciseEndYear" layoutX="319.0" layoutY="409.0" prefHeight="37.0" prefWidth="58.0" text="YYYY" />
-                        <Label alignment="CENTER" layoutX="23.0" layoutY="382.0" minWidth="60.0" prefHeight="27.0" prefWidth="84.0" style="&#10;" text="Start Day" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x1312" />
-                           </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x2312" />
-                           </textFill>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="203.0" layoutY="382.0" minWidth="60.0" prefHeight="27.0" prefWidth="84.0" style="&#10;" text="End Day" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x13111" />
-                           </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x23111" />
-                           </textFill>
-                        </Label>
-                        <Button fx:id="checkExerciseTotalButton" layoutX="24.0" layoutY="517.0" mnemonicParsing="false" onAction="#checkExerciseTotal" text="Check Total Exercise" />
-                        <Button fx:id="checkExerciseDailyButton" layoutX="24.0" layoutY="548.0" mnemonicParsing="false" onAction="#checkExerciseAverage" text="Check Daily Exercise" />
+                        <Button fx:id="checkExerciseTotalButton" layoutX="24.0" layoutY="464.0" mnemonicParsing="false" onAction="#checkExerciseTotal" prefHeight="25.0" prefWidth="153.0" text="Check Total Exercise" />
+                        <Button fx:id="checkExerciseDailyButton" layoutX="24.0" layoutY="496.0" mnemonicParsing="false" onAction="#checkExerciseAverage" prefHeight="25.0" prefWidth="153.0" text="Check Daily Exercise" />
                         <Label alignment="CENTER" layoutX="14.0" layoutY="624.0" minWidth="60.0" prefHeight="49.0" prefWidth="405.0" style="&#10;" text="All totals and daily amounts are an average value" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x1321" />
@@ -205,13 +158,15 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x2321" />
                            </textFill>
                         </Label>
-                        <Button fx:id="loadUserButton" layoutX="700.0" layoutY="573.0" mnemonicParsing="false" onAction="#loadUser" text="Load User" />
+                        <Button fx:id="loadUserButton" layoutX="672.0" layoutY="573.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="25.0" prefWidth="127.0" text="Load User" />
                         <Button fx:id="checkProgress" layoutX="672.0" layoutY="605.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Check Progress" />
                         <TextArea fx:id="boxForUserName" layoutX="671.0" layoutY="529.0" prefHeight="20.0" prefWidth="127.0" />
                         <TextArea fx:id="detailsDisplay" editable="false" layoutX="517.0" layoutY="69.0" prefHeight="407.0" prefWidth="460.0">
                            <font>
                               <Font size="20.0" />
                            </font></TextArea>
+                        <Button fx:id="checkAllFood" layoutX="24.0" layoutY="266.0" mnemonicParsing="false" onAction="#showAllFood" text="Show All Food Consumed" />
+                        <Button fx:id="checkAllExercise" layoutX="24.0" layoutY="529.0" mnemonicParsing="false" onAction="#showAllExercise" text="Show All Exercise Completed" />
                      </children>
                   </AnchorPane>
                </items>

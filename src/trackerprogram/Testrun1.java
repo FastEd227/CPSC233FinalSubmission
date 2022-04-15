@@ -10,8 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import static trackerprogram.InputGathering.errorCheckUserInput;
@@ -30,13 +29,13 @@ public class Testrun1 {
     private MenuItem quit;
 
     @FXML
-    private MenuItem addToGlobalFood;
+    private MenuItem addToGlobal;
 
     @FXML
     private MenuItem addToGlobalExercise;
 
     @FXML
-    private MenuItem showGlobalFood;
+    private MenuItem showGlobalInformation;
 
     @FXML
     private MenuItem showGlobalExercise;
@@ -160,6 +159,17 @@ public class Testrun1 {
     private static ArrayList<UserFood> userFood;
     private static ArrayList<UserExercise> userExercise;
     Stage tony = new Stage();
+    Stage jhanny = new Stage();
+    Stage dan = new Stage();
+    Stage evan = new Stage();
+
+    ArrayList<String> foodListInArray = new ArrayList<>();
+    String listedFood = new String();
+
+    ArrayList<String> exerciseListInArray = new ArrayList<>();
+    String listedExercise = new String();
+
+
 
 
 
@@ -187,85 +197,102 @@ public class Testrun1 {
 
 
     }
+    //this is used to load the user information
+
 
     public void addFood(ActionEvent event){
-        String daDay = addFoodDay.getText();
-        String daMonth = addFoodMonth.getText();
-        String daYear = addFoodYear.getText();
-        String daCalories = addFoodCalories.getText();
-        String daProtein = addFoodProtein.getText();
-        String daCarbs = addFoodCarbs.getText();
-        String daFat = addFoodFat.getText();
 
-        if(InputGathering.checkIfInteger(daDay) && InputGathering.checkIfInteger(daMonth) && InputGathering.checkIfInteger(daYear) && InputGathering.checkIfFloat(daCalories) && InputGathering.checkIfFloat(daProtein) && InputGathering.checkIfFloat(daCarbs) && InputGathering.checkIfFloat(daFat)){
-            int day = Integer.parseInt(daDay);
-            int month = Integer.parseInt(daMonth);
-            int year = Integer.parseInt(daYear);
-            float calories = Float.parseFloat(daCalories);
-            float protein = Float.parseFloat(daProtein);
-            float fat = Float.parseFloat(daFat);
-            float carbs = Float.parseFloat(daCarbs);
-            UserFood newItem = new UserFood(day,month,year,calories,protein,fat,carbs);
-            String writeableNewItem = newItem.toString();
-            InputGathering.writingToFile("./"+userName+"/foodinfo.txt",writeableNewItem);
-
-            userFood.add(newItem);
-
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
         } else {
-            leftStatusLabel.setText("This is not a correct amount that is accepted");
+
+            String daDay = addFoodDay.getText();
+            String daMonth = addFoodMonth.getText();
+            String daYear = addFoodYear.getText();
+            String daCalories = addFoodCalories.getText();
+            String daProtein = addFoodProtein.getText();
+            String daCarbs = addFoodCarbs.getText();
+            String daFat = addFoodFat.getText();
+
+            if (InputGathering.checkIfInteger(daDay) && InputGathering.checkIfInteger(daMonth) && InputGathering.checkIfInteger(daYear) && InputGathering.checkIfFloat(daCalories) && InputGathering.checkIfFloat(daProtein) && InputGathering.checkIfFloat(daCarbs) && InputGathering.checkIfFloat(daFat)) {
+                int day = Integer.parseInt(daDay);
+                int month = Integer.parseInt(daMonth);
+                int year = Integer.parseInt(daYear);
+                float calories = Float.parseFloat(daCalories);
+                float protein = Float.parseFloat(daProtein);
+                float fat = Float.parseFloat(daFat);
+                float carbs = Float.parseFloat(daCarbs);
+                UserFood newItem = new UserFood(day, month, year, calories, protein, fat, carbs);
+                String writeableNewItem = newItem.toString();
+                InputGathering.writingToFile("./" + userName + "/foodinfo.txt", writeableNewItem);
+
+                userFood.add(newItem);
+
+            } else {
+                leftStatusLabel.setText("This is not a correct amount that is accepted");
+            }
         }
 
 
     }
 
     public void addExercise(ActionEvent event){
-        String daDay = addExerciseDay.getText();
-        String daMonth = addExerciseMonth.getText();
-        String daYear = addExerciseYear.getText();
-        String daCalories = addExerciseCalories.getText();
-
-        if(InputGathering.checkIfInteger(daDay) && InputGathering.checkIfInteger(daMonth) && InputGathering.checkIfInteger(daYear) && InputGathering.checkIfFloat(daCalories)){
-            int day = Integer.parseInt(daDay);
-            int month = Integer.parseInt(daMonth);
-            int year = Integer.parseInt(daYear);
-            float calories = Float.parseFloat(daCalories);
-            UserExercise newItem = new UserExercise(day,month,year,calories);
-            String writeableNewItem = newItem.toString();
-            InputGathering.writingToFile("./"+userName+"/workoutInfo.txt",writeableNewItem);
-
-            userExercise.add(newItem);
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
         } else {
-            leftStatusLabel.setText("This is not a correct amount that is accepted");
+
+            String daDay = addExerciseDay.getText();
+            String daMonth = addExerciseMonth.getText();
+            String daYear = addExerciseYear.getText();
+            String daCalories = addExerciseCalories.getText();
+
+            if (InputGathering.checkIfInteger(daDay) && InputGathering.checkIfInteger(daMonth) && InputGathering.checkIfInteger(daYear) && InputGathering.checkIfFloat(daCalories)) {
+                int day = Integer.parseInt(daDay);
+                int month = Integer.parseInt(daMonth);
+                int year = Integer.parseInt(daYear);
+                float calories = Float.parseFloat(daCalories);
+                UserExercise newItem = new UserExercise(day, month, year, calories);
+                String writeableNewItem = newItem.toString();
+                InputGathering.writingToFile("./" + userName + "/workoutInfo.txt", writeableNewItem);
+
+                userExercise.add(newItem);
+            } else {
+                leftStatusLabel.setText("This is not a correct amount that is accepted");
+            }
         }
 
 
     }
 
     public void checkFoodTotal(ActionEvent event){
-        float caloricIntake = 0;
-        float fatIntake = 0;
-        float proteinIntake = 0;
-        float carbsIntake = 0;
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
+        } else {
+
+            float caloricIntake = 0;
+            float fatIntake = 0;
+            float proteinIntake = 0;
+            float carbsIntake = 0;
 
 
-        for (int i = 0; i < userFood.size(); i++) {
-            UserFood foodEaten = userFood.get(i);
-            caloricIntake = caloricIntake + foodEaten.calories;
-            fatIntake = fatIntake + foodEaten.fat;
-            proteinIntake = proteinIntake + foodEaten.protein;
-            carbsIntake = carbsIntake + foodEaten.carbs;
+            for (int i = 0; i < userFood.size(); i++) {
+                UserFood foodEaten = userFood.get(i);
+                caloricIntake = caloricIntake + foodEaten.calories;
+                fatIntake = fatIntake + foodEaten.fat;
+                proteinIntake = proteinIntake + foodEaten.protein;
+                carbsIntake = carbsIntake + foodEaten.carbs;
 
 
+            }
 
+
+            String totalCalories = "Your total calories is: " + caloricIntake;
+            String totalFat = "Your total fat is: " + fatIntake + " grams";
+            String totalProtein = "Your total protein is: " + proteinIntake + " grams";
+            String totalCarbs = "Your total carbs is: " + carbsIntake + " grams";
+
+            detailsDisplay.setText(totalCalories + "\n" + totalProtein + "\n" + totalFat + "\n" + totalCarbs);
         }
-
-
-        String totalCalories = "Your total calories is: " + caloricIntake;
-        String totalFat = "Your total fat is: " + fatIntake + " grams";
-        String totalProtein = "Your total protein is: " + proteinIntake + " grams";
-        String totalCarbs = "Your total carbs is: " + carbsIntake + " grams";
-
-        detailsDisplay.setText(totalCalories + "\n" + totalProtein + "\n" + totalFat + "\n" + totalCarbs);
 
 
 
@@ -274,80 +301,104 @@ public class Testrun1 {
 
 
     }
+    //this is used to check the total amount of food consumed
 
     public void checkFoodAverage(ActionEvent event){
 
-        float caloricIntake = 0;
-        float fatIntake = 0;
-        float proteinIntake = 0;
-        float carbsIntake = 0;
-        int averageAmount = 0;
-        int dailyAmount = 0;
-
-        for (int i = 0; i < userFood.size(); i++) {
-            UserFood foodEaten = userFood.get(i);
-            caloricIntake = caloricIntake + foodEaten.calories;
-            fatIntake = fatIntake + foodEaten.fat;
-            proteinIntake = proteinIntake + foodEaten.protein;
-            carbsIntake = carbsIntake + foodEaten.carbs;
-            averageAmount++;
-
-
-        }
-
-
-        if(InputGathering.checkIfInteger(checkFoodDailyMeals.getText())){
-            dailyAmount = Integer.parseInt(checkFoodDailyMeals.getText());
-            String totalCalories = "Your total calories is: " + (caloricIntake / averageAmount)*dailyAmount;
-            String totalFat = "Your total fat is: " + (fatIntake / averageAmount)*dailyAmount + " grams";
-            String totalProtein = "Your total protein is: " + (proteinIntake / averageAmount)*dailyAmount + " grams";
-            String totalCarbs = "Your total carbs is: " + (carbsIntake / averageAmount)*dailyAmount + " grams";
-
-            detailsDisplay.setText(totalCalories + "\n" + totalProtein + "\n" + totalFat + "\n" + totalCarbs);
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
         } else {
-            leftStatusLabel.setText("This is not a correct amount that is accepted");
+
+            float caloricIntake = 0;
+            float fatIntake = 0;
+            float proteinIntake = 0;
+            float carbsIntake = 0;
+            int averageAmount = 0;
+            int dailyAmount = 1;
+
+            for (int i = 0; i < userFood.size(); i++) {
+                UserFood foodEaten = userFood.get(i);
+                caloricIntake = caloricIntake + foodEaten.calories;
+                fatIntake = fatIntake + foodEaten.fat;
+                proteinIntake = proteinIntake + foodEaten.protein;
+                carbsIntake = carbsIntake + foodEaten.carbs;
+                averageAmount++;
+
+
+            }
+
+
+            if (InputGathering.checkIfInteger(checkFoodDailyMeals.getText())) {
+                dailyAmount = Integer.parseInt(checkFoodDailyMeals.getText());
+                String totalCalories = "Your average calories is: " + (caloricIntake / averageAmount) * dailyAmount;
+                String totalFat = "Your average fat is: " + (fatIntake / averageAmount) * dailyAmount + " grams";
+                String totalProtein = "Your average protein is: " + (proteinIntake / averageAmount) * dailyAmount + " grams";
+                String totalCarbs = "Your average carbs is: " + (carbsIntake / averageAmount) * dailyAmount + " grams";
+
+                detailsDisplay.setText(totalCalories + "\n" + totalProtein + "\n" + totalFat + "\n" + totalCarbs);
+            } else {
+                leftStatusLabel.setText("This is not a correct amount that is accepted");
+            }
         }
 
 
 
 
     }
+    //this is used to check the average amount of food consumed
 
     public void checkExerciseTotal(ActionEvent event){
-        float caloricIntake = 0;
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
+        } else {
 
-        for (int i = 0; i < userExercise.size(); i++) {
-            UserExercise exerciseDone = userExercise.get(i);
-            caloricIntake = caloricIntake + exerciseDone.calories;
+            if (userName == null) {
+                leftStatusLabel.setText("There is no user loaded. Please load user");
+            } else {
+
+                float caloricIntake = 0;
+
+                for (int i = 0; i < userExercise.size(); i++) {
+                    UserExercise exerciseDone = userExercise.get(i);
+                    caloricIntake = caloricIntake + exerciseDone.calories;
+                }
+                String totalCalories = "Your total calories burned is: " + caloricIntake;
+                detailsDisplay.setText(totalCalories);
+            }
         }
-        String totalCalories = "Your total calories burned is: " + caloricIntake;
-        detailsDisplay.setText(totalCalories);
 
 
 
     }
+    //this is used to check the total amount of exercise done
 
     public void checkExerciseAverage(ActionEvent event){
-        float caloricIntake = 0;
-        float averageAmount = 0;
-        for (int i = 0; i < userExercise.size(); i++) {
-            UserExercise exerciseDone = userExercise.get(i);
-            caloricIntake = caloricIntake + exerciseDone.calories;
-            averageAmount++;
-
-        }
-        if(InputGathering.checkIfFloat(checkExerciseDailyHours.getText())){
-            Float averageDaily = Float.parseFloat(checkExerciseDailyHours.getText());
-            String totalCalories = "Your average calories burned per hour is: " + (caloricIntake / averageAmount)*averageDaily;
-
-
-            detailsDisplay.setText(totalCalories);
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
         } else {
-            leftStatusLabel.setText("This is not a correct amount that is accepted");
+
+            float caloricIntake = 0;
+            float averageAmount = 0;
+            for (int i = 0; i < userExercise.size(); i++) {
+                UserExercise exerciseDone = userExercise.get(i);
+                caloricIntake = caloricIntake + exerciseDone.calories;
+                averageAmount++;
+
+            }
+            if (InputGathering.checkIfFloat(checkExerciseDailyHours.getText())) {
+                Float averageDaily = Float.parseFloat(checkExerciseDailyHours.getText());
+                String totalCalories = "Your average calories burned per hour is: " + (caloricIntake / averageAmount) / averageDaily;
+
+
+                detailsDisplay.setText(totalCalories);
+            } else {
+                leftStatusLabel.setText("This is not a correct amount that is accepted");
+            }
         }
 
 
     }
+    //this is used to check the average amount of exercise done
 
     public void switchToNewUser(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newUser.fxml"));
@@ -359,4 +410,111 @@ public class Testrun1 {
         tony.setScene(scene);
         tony.show();
     }
+
+    public void switchToGlobalTracker(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("globalTracker.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        jhanny.setTitle("Add Global Item");
+
+
+        //Students edit here to set up the scene
+        jhanny.setScene(scene);
+        jhanny.show();
+    }
+
+
+    public void switchToGlobalInformation(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GlobalInformation.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        dan.setTitle("List of All Foods Added");
+
+
+        //Students edit here to set up the scene
+        dan.setScene(scene);
+        dan.show();
+    }
+
+    public void showAllFood(ActionEvent event) {
+
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
+        } else {
+
+            try {
+                FileReader file_reader = new FileReader(userName + "\\foodInfo.txt");
+                BufferedReader buffered_reader = new BufferedReader(file_reader);
+                String line = buffered_reader.readLine();
+                listedFood = new String();
+                foodListInArray.clear();
+
+
+                while (line != null) {
+                    foodListInArray.add(line);
+
+
+                    line = buffered_reader.readLine();
+                }
+
+
+            } catch (FileNotFoundException e) {
+//Handle error
+            } catch (IOException e) {
+
+            }
+
+            for (int i = 0; i < foodListInArray.size(); i++) {
+                listedFood = listedFood.concat(foodListInArray.get(i) + "\n");
+            }
+            detailsDisplay.clear();
+
+            detailsDisplay.setText(listedFood);
+        }
+
+    }
+
+    public void showAllExercise(ActionEvent event) {
+
+        if(userName == null){
+            leftStatusLabel.setText("There is no user loaded. Please load user");
+        } else {
+
+            try {
+                FileReader file_reader = new FileReader(userName + "\\workoutInfo.txt");
+                BufferedReader buffered_reader = new BufferedReader(file_reader);
+                String line = buffered_reader.readLine();
+                listedExercise = new String();
+                exerciseListInArray.clear();
+
+
+                while (line != null) {
+                    exerciseListInArray.add(line);
+
+
+                    line = buffered_reader.readLine();
+                }
+
+
+            } catch (FileNotFoundException e) {
+//Handle error
+            } catch (IOException e) {
+
+            }
+
+            for (int i = 0; i < foodListInArray.size(); i++) {
+                listedExercise = listedExercise.concat(foodListInArray.get(i) + "\n");
+            }
+            detailsDisplay.clear();
+
+            detailsDisplay.setText(listedExercise);
+        }
+
+    }
+
+
+
+
+
+
+
+
 }

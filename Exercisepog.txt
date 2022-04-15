@@ -1,0 +1,4 @@
+Exercise,Amount(in duration or length, depending on exercise type),Calorie Burned
+Walking(kilometers),4,371
+Hockey(per game),1.0,694.0
+BaseBall(per game),1.0,474.0
